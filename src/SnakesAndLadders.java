@@ -4,7 +4,11 @@ import java.util.Random;
 
 public class SnakesAndLadders {
 
-    public static void main(String[] args) {
+    public static void main(String[] args){
+        new SnakesAndLadders().run();
+    }
+
+    public void run() {
         Map<Integer, Integer> snakePositions = new HashMap<>() {
             {
                 put(18, 2);
