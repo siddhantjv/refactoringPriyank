@@ -5,7 +5,7 @@ import java.util.List;
 
 class SnakesAndLaddersTest {
 
-    private SnakesAndLadders game;
+    private final SnakesAndLadders game =  new SnakesAndLadders();
 
     @Test
     void theGameShouldRunAndCompleteSuccessfully(){
