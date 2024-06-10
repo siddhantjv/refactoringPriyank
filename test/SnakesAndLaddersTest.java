@@ -9,7 +9,9 @@ class SnakesAndLaddersTest {
 
     @Test
     void theGameShouldRunAndCompleteSuccessfully(){
-        game.run(new ProgrammableDie());
+
+        TestLogger logger = new TestLogger();
+        game.run(new ProgrammableDie(), logger);
     }
 
     static class ProgrammableDie implements GameDie{
