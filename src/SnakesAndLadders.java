@@ -1,14 +1,13 @@
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
 
 public class SnakesAndLadders {
 
     public static void main(String[] args){
-        new SnakesAndLadders().run();
+        new SnakesAndLadders().run(new RandomDie());
     }
 
-    public void run() {
+    public void run(GameDie die) {
         Map<Integer, Integer> snakePositions = new HashMap<>() {
             {
                 put(18, 2);
@@ -41,7 +40,7 @@ public class SnakesAndLadders {
 
         while (true) {
 
-            int dieRoll = getDieRoll();
+            int dieRoll = die.roll();
             System.out.println("Player " + currentPlayerNum + " got dice roll of " + dieRoll);
 
             if (currentPlayerNum == 1) {
@@ -207,8 +206,4 @@ public class SnakesAndLadders {
 
     }
 
-    private static Integer getDieRoll() {
-        Random rand = new Random();
-        return rand.nextInt(6) + 1;
-    }
 }
