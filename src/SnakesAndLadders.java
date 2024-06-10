@@ -3,11 +3,13 @@ import java.util.Map;
 
 public class SnakesAndLadders {
 
+
     public static void main(String[] args){
-        new SnakesAndLadders().run(new RandomDie(), new TerminalLogger());
+        new SnakesAndLadders().run(new RandomDie(), new TerminalLogger(), new GameController());
     }
 
-    public void run(GameDie die, Logger logger) {
+    public void run(GameDie die, Logger logger, GameEvents gameEvents) {
+
         Map<Integer, Integer> snakePositions = new HashMap<>() {
             {
                 put(18, 2);
@@ -34,10 +36,11 @@ public class SnakesAndLadders {
                 put(63, 88);
             }
         };
+
         int currentPlayerNum = 1;
         int playerOnePosition = 0, playerTwoPosition = 0, playerThreePosition = 0, playerFourPosition = 0;
-        boolean skip = false;
 
+        boolean skip = false;
         while (true) {
             int dieRoll = die.roll();
             logger.log("Player " + currentPlayerNum + " got dice roll of " + dieRoll);
@@ -52,7 +55,7 @@ public class SnakesAndLadders {
 
                 if (nextPosition == 100) {
                     logger.log("Player one wins! Game finished.");
-                    System.exit(1);
+                    gameEvents.endGame();
                 }
 
                 if (playerOnePosition == 0 && dieRoll != 6) {
@@ -81,7 +84,8 @@ public class SnakesAndLadders {
                 currentPlayerNum = 2;
                 logger.log("Player two will play next turn");
 
-            } else if (currentPlayerNum == 2) {
+            }
+            else if (currentPlayerNum == 2) {
                 int next = playerTwoPosition + dieRoll;
 
                 if (next > 100) {
@@ -91,7 +95,7 @@ public class SnakesAndLadders {
 
                 if (next == 100) {
                     logger.log("Player two wins! Game finished.");
-                    System.exit(1);
+                    gameEvents.endGame();
                 }
 
                 if (playerTwoPosition == 0 && dieRoll != 6) {
@@ -119,7 +123,8 @@ public class SnakesAndLadders {
                 currentPlayerNum = 3;
                 logger.log("Player three will play next turn");
 
-            } else if (currentPlayerNum == 3) {
+            }
+            else if (currentPlayerNum == 3) {
                 int next = playerThreePosition + dieRoll;
 
                 if (next > 100) {
@@ -129,7 +134,7 @@ public class SnakesAndLadders {
 
                 if (next == 100) {
                     logger.log("Player three wins! Game finished.");
-                    System.exit(1);
+                    gameEvents.endGame();
                 }
 
                 if (playerThreePosition == 0 && dieRoll != 6) {
@@ -157,7 +162,8 @@ public class SnakesAndLadders {
                 currentPlayerNum = 4;
                 logger.log("Player four will play next turn");
 
-            } else {
+            }
+            else {
                 int next = playerFourPosition + dieRoll;
 
                 if (next > 100) {
@@ -167,7 +173,7 @@ public class SnakesAndLadders {
 
                 if (next == 100) {
                     logger.log("Player four wins! Game finished.");
-                    System.exit(1);
+                    gameEvents.endGame();
                 }
 
                 if (playerFourPosition == 0 && dieRoll != 6) {

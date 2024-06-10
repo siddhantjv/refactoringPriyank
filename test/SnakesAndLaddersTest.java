@@ -1,7 +1,8 @@
 import org.junit.jupiter.api.Test;
-
 import java.util.ArrayList;
 import java.util.List;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 class SnakesAndLaddersTest {
 
@@ -10,8 +11,18 @@ class SnakesAndLaddersTest {
     @Test
     void theGameShouldRunAndCompleteSuccessfully(){
 
-        TestLogger logger = new TestLogger();
-        game.run(new ProgrammableDie(), logger);
+        TestLogger testLogger = new TestLogger();
+        try{
+
+            game.run(new ProgrammableDie(), testLogger, () -> {
+                throw new RuntimeException("Game Finished!");
+            });
+
+            fail("Exception to be thrown!");
+        }
+        catch (RuntimeException re){
+            assertEquals("Player one wins! Game finished.", testLogger.messageAt(testLogger.messages()-1));
+        }
     }
 
     static class ProgrammableDie implements GameDie{
