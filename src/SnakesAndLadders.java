@@ -6,8 +6,7 @@ public class SnakesAndLadders {
 
     public static void main(String[] args) {
         //declare variables
-        String[][] brd = new String[10][10];
-        Map<Integer, Integer> snakePositions = new HashMap<Integer, Integer>() {
+        Map<Integer, Integer> snakePositions = new HashMap<>() {
             {
                 put(18, 2);
                 put(25, 8);
@@ -21,7 +20,7 @@ public class SnakesAndLadders {
                 put(97, 5);
             }
         };
-        Map<Integer, Integer> ladderPositions = new HashMap<Integer, Integer>() {
+        Map<Integer, Integer> ladderPositions = new HashMap<>() {
             {
                 put(9, 32);
                 put(12, 53);
@@ -161,7 +160,7 @@ public class SnakesAndLadders {
                 currentPlayerNum = 4;
                 System.out.println("Player four will play next turn");
 
-            } else if (currentPlayerNum == 4) {
+            } else {
 
                 int next = playerFourPosition + nextNum;
 
