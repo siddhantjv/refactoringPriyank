@@ -7,7 +7,7 @@ public class SnakesAndLadders {
     public static void main(String[] args) {
         //declare variables
         String[][] brd = new String[10][10];
-        Map<Integer, Integer> snkPos = new HashMap<Integer, Integer>() {
+        Map<Integer, Integer> snakePositions = new HashMap<Integer, Integer>() {
             {
                 put(18, 2);
                 put(25, 8);
@@ -21,7 +21,7 @@ public class SnakesAndLadders {
                 put(97, 5);
             }
         };
-        Map<Integer, Integer> ldrPos = new HashMap<Integer, Integer>() {
+        Map<Integer, Integer> ladderPositions = new HashMap<Integer, Integer>() {
             {
                 put(9, 32);
                 put(12, 53);
@@ -33,7 +33,7 @@ public class SnakesAndLadders {
                 put(63, 88);
             }
         };
-        int player = 1;
+        int currentPlayerNum = 1;
         int playerOnePosition = 0, playerTwoPosition = 0, playerThreePosition = 0, playerFourPosition = 0;
         boolean skip = false;
 
@@ -42,9 +42,9 @@ public class SnakesAndLadders {
         while (true) {
 
             int nextNum = getNumber();
-            System.out.println("Player " + player + " got dice roll of " + nextNum);
+            System.out.println("Player " + currentPlayerNum + " got dice roll of " + nextNum);
 
-            if (player == 1) {
+            if (currentPlayerNum == 1) {
                 int next = playerOnePosition + nextNum;
 
                 if (next > 100) {
@@ -62,15 +62,15 @@ public class SnakesAndLadders {
                     skip = true;
                 }
 
-                if (snkPos.get(next) != null) {
+                if (snakePositions.get(next) != null) {
                     System.out.println("Player got bit by snake a position " + next);
-                    playerOnePosition = snkPos.get(next);
+                    playerOnePosition = snakePositions.get(next);
                     skip = true;
                 }
 
-                if (ldrPos.get(next) != null) {
+                if (ladderPositions.get(next) != null) {
                     System.out.println("Player got chanced upon a ladder at position " + next + "!");
-                    playerOnePosition = ldrPos.get(next);
+                    playerOnePosition = ladderPositions.get(next);
                     skip = true;
                 }
 
@@ -78,12 +78,12 @@ public class SnakesAndLadders {
                     playerOnePosition = next;
                 }
 
-                System.out.println("Next position for player one is " + playerOnePosition);
+                System.out.println("Next position for currentPlayerNum one is " + playerOnePosition);
                 skip = false;
-                player = 2;
+                currentPlayerNum = 2;
                 System.out.println("Player two will play next turn");
 
-            } else if (player == 2) {
+            } else if (currentPlayerNum == 2) {
 
                 int next = playerTwoPosition + nextNum;
 
@@ -102,27 +102,27 @@ public class SnakesAndLadders {
                     skip = true;
                 }
 
-                if (snkPos.get(next) != null) {
+                if (snakePositions.get(next) != null) {
                     System.out.println("Player got bit by snake a position " + next);
-                    playerTwoPosition = snkPos.get(next);
+                    playerTwoPosition = snakePositions.get(next);
                     skip = true;
                 }
 
-                if (ldrPos.get(next) != null) {
+                if (ladderPositions.get(next) != null) {
                     System.out.println("Player got chanced upon a ladder at position " + next + "!");
-                    playerTwoPosition = ldrPos.get(next);
+                    playerTwoPosition = ladderPositions.get(next);
                     skip = true;
                 }
 
                 if (!skip) {
                     playerTwoPosition = next;
                 }
-                System.out.println("Next position for player two is " + playerTwoPosition);
+                System.out.println("Next position for currentPlayerNum two is " + playerTwoPosition);
                 skip = false;
-                player = 3;
+                currentPlayerNum = 3;
                 System.out.println("Player three will play next turn");
 
-            } else if (player == 3) {
+            } else if (currentPlayerNum == 3) {
 
                 int next = playerThreePosition + nextNum;
 
@@ -141,27 +141,27 @@ public class SnakesAndLadders {
                     skip = true;
                 }
 
-                if (snkPos.get(next) != null) {
+                if (snakePositions.get(next) != null) {
                     System.out.println("Player got bit by snake a position " + next);
-                    playerThreePosition = snkPos.get(next);
+                    playerThreePosition = snakePositions.get(next);
                     skip = true;
                 }
 
-                if (ldrPos.get(next) != null) {
+                if (ladderPositions.get(next) != null) {
                     System.out.println("Player got chanced upon a ladder at position " + next + "!");
-                    playerThreePosition = ldrPos.get(next);
+                    playerThreePosition = ladderPositions.get(next);
                     skip = true;
                 }
 
                 if (!skip) {
                     playerThreePosition = next;
                 }
-                System.out.println("Next position for player three is " + playerThreePosition);
+                System.out.println("Next position for currentPlayerNum three is " + playerThreePosition);
                 skip = false;
-                player = 4;
+                currentPlayerNum = 4;
                 System.out.println("Player four will play next turn");
 
-            } else if (player == 4) {
+            } else if (currentPlayerNum == 4) {
 
                 int next = playerFourPosition + nextNum;
 
@@ -180,24 +180,24 @@ public class SnakesAndLadders {
                     skip = true;
                 }
 
-                if (snkPos.get(next) != null) {
+                if (snakePositions.get(next) != null) {
                     System.out.println("Player got bit by snake a position " + next);
-                    playerFourPosition = snkPos.get(next);
+                    playerFourPosition = snakePositions.get(next);
                     skip = true;
                 }
 
-                if (ldrPos.get(next) != null) {
+                if (ladderPositions.get(next) != null) {
                     System.out.println("Player got chanced upon a ladder at position " + next + "!");
-                    playerFourPosition = ldrPos.get(next);
+                    playerFourPosition = ladderPositions.get(next);
                     skip = true;
                 }
 
                 if (!skip) {
                     playerFourPosition = next;
                 }
-                System.out.println("Next position for player four is " + playerFourPosition);
+                System.out.println("Next position for currentPlayerNum four is " + playerFourPosition);
                 skip = false;
-                player = 1;
+                currentPlayerNum = 1;
                 System.out.println("Player one will play next turn");
             }
 
