@@ -54,21 +54,21 @@ public class SnakesAndLadders {
                 logger.log("Player two will play next turn");
             }
             else if (currentPlayerNum == 2) {
-                playerTwoPosition = getPlayerPosition(logger, gameEvents, playerOnePosition, dieRoll, skip, snakePositions, ladderPositions, "two");
+                playerTwoPosition = getPlayerPosition(logger, gameEvents, playerTwoPosition, dieRoll, skip, snakePositions, ladderPositions, "two");
                 logger.log("Next position for player two is " + playerTwoPosition);
                 skip = false;
                 currentPlayerNum = 3;
                 logger.log("Player three will play next turn");
 
             } else if (currentPlayerNum == 3) {
-                playerThreePosition = getPlayerPosition(logger, gameEvents, playerOnePosition, dieRoll, skip, snakePositions, ladderPositions, "three");
+                playerThreePosition = getPlayerPosition(logger, gameEvents, playerThreePosition, dieRoll, skip, snakePositions, ladderPositions, "three");
                 logger.log("Next position for player three is " + playerThreePosition);
                 skip = false;
                 currentPlayerNum = 4;
                 logger.log("Player four will play next turn");
 
             } else {
-                playerFourPosition = getPlayerPosition(logger, gameEvents, playerOnePosition, dieRoll, skip, snakePositions, ladderPositions, "four");
+                playerFourPosition = getPlayerPosition(logger, gameEvents, playerFourPosition, dieRoll, skip, snakePositions, ladderPositions, "four");
 
                 logger.log("Next position for player four is " + playerFourPosition);
                 skip = false;
